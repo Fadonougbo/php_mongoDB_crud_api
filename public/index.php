@@ -5,7 +5,7 @@ use function Http\Response\send;
 use Dotenv\Dotenv;
 
 
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 $router=new AltoRouter();
@@ -20,7 +20,7 @@ $match=$router->match();
 
 if($match)
 {
-    require "./apiAction/crud.php";
+    require dirname(__DIR__).DIRECTORY_SEPARATOR."phpmongo".DIRECTORY_SEPARATOR."apiAction/crud.php";
 }else 
 {
     $body=json_encode(["message"=>"Bad HTTP method or url"]);
